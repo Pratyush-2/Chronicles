@@ -5,6 +5,7 @@ import com.chronicles.log.entity.Region;
 import com.chronicles.log.service.RegionService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,9 +34,9 @@ public class RegionController {
         return regionService.createRegion(region);
     }
     @GetMapping("/{id}")
-    public Region getRegionById(@PathVariable long id){
-        return regionService.getRegionById(id);
-
+    public ResponseEntity<Region> getRegionById(@PathVariable long id){
+        Region region = regionService.getRegionById(id);
+        return ResponseEntity.ok(region);
     }
     @PutMapping("/{id}")
     public Region updateRegion(@PathVariable long id, @RequestBody Region region){

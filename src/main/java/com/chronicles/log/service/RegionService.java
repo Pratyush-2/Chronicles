@@ -2,6 +2,7 @@ package com.chronicles.log.service;
 
 import com.chronicles.log.dto.RegionRequest;
 import com.chronicles.log.entity.Region;
+import com.chronicles.log.exception.ResourceNotFoundException;
 import com.chronicles.log.repository.RegionRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +23,7 @@ public class RegionService {
         return regionRepository.save(region);
     }
     public Region getRegionById(long id){
-        return regionRepository.findById(id).orElseThrow(()-> new RuntimeException("Region not found"));
+        return regionRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Region not found"));
     }
     public Region updateRegion(long id,Region updatedRegion){
         Region existing = getRegionById(id);
