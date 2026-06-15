@@ -28,10 +28,8 @@ public class RegionController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Region createRegion (@Valid @RequestBody RegionRequest request){
-        Region region = new Region();
-        region.setName(request.getName());
-        region.setDescription(request.getDescription());
-        return regionService.createRegion(region);
+        return regionService.createRegion(request);
+
     }
     @GetMapping("/{id}")
     public ResponseEntity<Region> getRegionById(@PathVariable long id){
@@ -39,7 +37,7 @@ public class RegionController {
         return ResponseEntity.ok(region);
     }
     @PutMapping("/{id}")
-    public Region updateRegion(@PathVariable long id, @RequestBody Region region){
+    public Region updateRegion(@PathVariable long id,@Valid @RequestBody Region region){
         return regionService.updateRegion(id,region);
     }
     @DeleteMapping("/{id}")

@@ -15,11 +15,15 @@ public class RegionService {
     public RegionService(RegionRepository regionRepository) {
         this.regionRepository = regionRepository;
     }
+
     public List<Region> getAllRegions(){
         return regionRepository.findAll();
     }
-    public Region createRegion(Region region)
+    public Region createRegion(RegionRequest request)
     {
+        Region region = new Region();
+        region.setName(request.getName());
+        region.setDescription(request.getDescription());
         return regionRepository.save(region);
     }
     public Region getRegionById(long id){
