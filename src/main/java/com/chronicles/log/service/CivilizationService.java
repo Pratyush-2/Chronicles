@@ -73,4 +73,5 @@ public class CivilizationService {
         Civilization existing = getCivilizationById(id);
         civilizationRepository.delete(existing);
     }
+
 }
